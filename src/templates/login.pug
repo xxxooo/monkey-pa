@@ -1,0 +1,23 @@
+template#viewLogin
+  .section
+    .columns
+      .column
+      .column.has-text-centered
+        h2.title 請登入
+        .field
+          .control.has-icons-left.has-icons-right
+            input.input.is-medium(type='email', placeholder="email", v-model='user.email')
+            span.icon.is-left
+              i.fa.fa-envelope
+        .field
+          .control.has-icons-left.has-icons-right
+            input.input.is-medium(type='password', placeholder="password", v-model='user.password')
+            span.icon.is-left
+              i.fa.fa-lock
+        .field
+          a.button.is-primary(@click='signIn') 登入
+        transition(name='expand')
+          .notification(v-if='message')
+            button.delete(@click="message=''")
+            span {{message}}
+      .column

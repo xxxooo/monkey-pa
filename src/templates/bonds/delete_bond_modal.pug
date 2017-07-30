@@ -1,0 +1,15 @@
+template#deleteBondModal
+  .modal(:class="{'is-active' : isOpen}")
+    .modal-background
+    .modal-card.narrow
+      .box.has-text-centered
+        .block
+          h3.modal-card-title 確認刪除？
+        .block
+          .field
+            h3.title {{bond.name}}
+          .field
+            span {{bond.info}}
+        .box-foot
+          a.button.is-danger(@click='destroy') 刪除
+          a.button(@click='isOpen = false') 取消
