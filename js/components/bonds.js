@@ -25,7 +25,7 @@ const bondsIndex = {
 
   data () {
     return {
-      start: false,
+      ready: false,
       slim: false,
       mode: null,
       newBond: initBond,
@@ -91,7 +91,7 @@ const bondsIndex = {
 
   created () {
     firebase.auth().onAuthStateChanged((user) => {
-      this.start = true;
+      this.ready = true
       this.$forceUpdate()
     })
     this.checkAuth()
@@ -300,7 +300,9 @@ const checkBond = {
     return {
       bond: {
         source: BondsRef.child(this.$route.params.id),
-        asObject: true
+        asObject: true,
+        cancelCallback: () => { this.loaded = true },
+        readyCallback: () => { this.loaded = true }
       }
     }
   },
@@ -308,7 +310,9 @@ const checkBond = {
   data () {
     return {
       auth: {},
+      ready: false,
       isAuthed: false,
+      loaded: false,
       isClicked: false,
       message: ''
     }
@@ -351,6 +355,7 @@ const checkBond = {
     this.auth = firebase.auth()
     this.auth.onAuthStateChanged((user) => {
       this.checkAuthUser(user)
+      this.ready = true
       this.$forceUpdate()
     })
   }

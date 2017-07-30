@@ -1,9 +1,11 @@
+//
+//
 const main = {
   template: '#viewMain',
 
   data () {
     return {
-      start: false,
+      ready: false,
       isAdmin: null,
       auth: firebase.auth()
     }
@@ -11,9 +13,15 @@ const main = {
 
   created () {
     this.auth.onAuthStateChanged((user) => {
-      this.start = true
+      this.ready = true
       if (user) this.isAdmin = Admins.indexOf(user.email) >= 0
       this.$forceUpdate()
     })
   }
+}
+
+//
+//
+const pageNotFound = {
+  template: '#pageNotFound'
 }
