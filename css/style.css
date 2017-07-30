@@ -94,7 +94,7 @@ a.icon.back + span {
   width: 100%;
 }
 .table-wrapper > .table {
-  min-width: 1200px;
+  min-width: 1102px;
 }
 .table-wrapper > .table.slim {
   min-width: 320px;

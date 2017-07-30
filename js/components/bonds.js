@@ -183,7 +183,7 @@ Vue.component('qr-view-modal', {
       logoScaling: 1.125,
       qrOptions: {
         level: 'H',
-        size: 384,
+        size: 356,
         padding: 20,
         foreground: '#853c10',
         background: '#fff0a2'
@@ -196,7 +196,7 @@ Vue.component('qr-view-modal', {
       return this.$route.query.mode ? '?mode=' + this.$route.query.mode : ''
     },
     checkBondUrl () {
-      //return 'https://xxxooo.github.io/check-in-bonds/#/bond/'+ this.bond['.key'] + this.modeQuery
+      //return 'https://xxxooo.github.io/monkey-pa/#/bond/'+ this.bond['.key'] + this.modeQuery
       return window.location.href.split('#')[0] + '#/bond/' + this.bond['.key'] + this.modeQuery
     }
   },
@@ -221,6 +221,9 @@ Vue.component('qr-view-modal', {
     qrCode () {
       this.qrOptions.element = document.getElementById("qrCode")
       this.qrOptions.value = this.checkBondUrl
+      if (this.checkBondUrl.length > 64) {
+        this.qrOptions.size = 384
+      }
       let qr = new QRious(this.qrOptions),
         ctx = qr.element.getContext('2d')
 
